@@ -1,0 +1,45 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+{% endfor %}
+{% endif %}
+
+<h1>Login</h1>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label> Username:
+        {{ form.username }}
+    </label>
+</div>
+
+<div>
+    <label>Password:
+        {{ form.password }}
+    </label>
+</div>
+
+<div class="grid">
+    <button type="submit">Submit</button>
+    <button type="reset" class="secondary">Reset</button>
+</div>
+<div class="small text-center">
+    <a href="{% url 'members:password_reset' %}" class="text-center"><i>Forgot Password?</i></a>
+</div>
+
+</form>
+
+
+
+
+
+{% endblock %}

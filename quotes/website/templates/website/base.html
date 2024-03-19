@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Note information</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'website/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'website/main.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="row header-box">
+            <div class="col-md-8">
+                <h1>
+                    <a href="/" style="text-decoration: none">Great quotes from great people</a>
+                </h1>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    {% if user.is_authenticated %}
+                        <button class="btn btn-sm btn-primary w-100 ml-2" onclick="location.href='{% url 'website:bigbutton' %}'">Big Secret Button</button>
+                        <button class="btn btn-sm btn-primary w-100 ml-2" onclick="location.href='{% url 'website:authors' %}'">Add a new Author</button>
+                        <button class="btn btn-sm btn-primary w-100 ml-2" onclick="location.href='{% url 'website:quotes' %}'">Add a new Quote</button>
+                        <button class="btn btn-sm btn-primary w-100 ml-2" onclick="location.href='{% url 'website:tags' %}'">Add a new Tag</button>
+                        <button class="btn btn-sm btn-primary w-100 ml-2" onclick="location.href='{% url 'members:logout' %}'">Logout</button>
+                    {% else %}
+                    <button class="btn btn-sm btn-primary w-100 ml-2" onclick="location.href='{% url 'members:register_user' %}'">Register</button>
+                    <button class="btn btn-sm btn-primary w-100 ml-2" onclick="location.href='{% url 'members:login' %}'">Login</button>
+
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+    {% block content %} {% endblock %}
+
+</body>
+</html>
